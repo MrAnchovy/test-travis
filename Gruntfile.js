@@ -3,13 +3,19 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+
+    // import project settings from package.json
+    pkg: grunt.file.readJSON('package.json'),
+
     jasmine : {
+      // test pre-build files in src/
       testSrc : {
         src : 'src/**/*.js',
         options : {
           specs : 'test/tests/**/*.js'
         }
       },
+      // test files after build in build/
       testBuild : {
         src : 'build/**/*.js',
         options : {
@@ -26,18 +32,22 @@ module.exports = function(grunt) {
       options: {
       }
     },
-    pkg: grunt.file.readJSON('package.json'),
+
     uglify: {
       options: {
         banner: '/** <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
           + ' * Copyright (c) 2013 testproject\n'
           + ' * Distributed under the MIT license\n'
-          + '**/\n',
-        compress: true
+          + '**/\n'
       },
+      
       build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
+        files: [
+          {
+            src:  'src/<%= pkg.name %>.js',
+            dest: 'build/<%= pkg.name %>.min.js'
+          }
+        ]
       }
     }
   });

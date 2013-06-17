@@ -3,7 +3,7 @@
   "description": "Example application using grunt-contrib-jasmine",
   "version": "0.1.0",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test --verbose"
   },
   "devDependencies": {
     "grunt-contrib-jasmine": "~0.4.0",
